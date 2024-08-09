@@ -3,10 +3,9 @@ const divCharImg = document.querySelector(".divCharImg");
 const divCharInfo = document.querySelector(".divCharInfo");
 
 function generateChar() {
-  const characterTotal = 826;
-  const randomNumber = Math.floor(Math.random() * characterTotal);
-  const apiURL = "https://rickandmortyapi.com/api/character/" + randomNumber;
-
+  // 826 = total de personagens
+  const apiURL =
+    "https://rickandmortyapi.com/api/character/" + randomNumber(1, 826);
   fetch(apiURL)
     .then((response) => {
       if (!response.ok) {
@@ -28,4 +27,8 @@ function generateChar() {
         <h4>Status: </h4>
         <p>${character.status}</p>`;
     });
+}
+
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
